@@ -3,6 +3,9 @@ import streamlit as st
 # Aba lateral
 st.set_page_config(initial_sidebar_state='collapsed')
 
+# Segurança
+if "logado" not in st.session_state or not st.session_state["logado"]:
+    st.switch_page("login.py")  # Se não estiver logado, volta pro login
 
 # Cores
 st.markdown("""
