@@ -9,7 +9,7 @@ st.set_page_config(initial_sidebar_state='collapsed')
 # Segurança
 if "logado" not in st.session_state or not st.session_state["logado"]:
     st.switch_page("login.py")  # Se não estiver logado, volta pro login
-    
+
 # Cores
 st.markdown("""
 <style>
@@ -22,6 +22,8 @@ linear-gradient(to right,
 """, unsafe_allow_html=True)
 
 # Página (intrdução)
+if st.button('Voltar'):
+    st.switch_page('pages/principal.py')
 st.write('## Cadastro de produtos.')
 st.write('Digite as informações desejadas e click no botão para cadastrar o produto')
 

@@ -40,3 +40,6 @@ if st.button('Página de calculo '):
 
 if st.button('Dashboard geral.'):
     st.switch_page('pages/dashboard.py')
+
+if st.button('Cadastrar produtos'):
+    st.switch_page('pages/cadastro_produtos.py')
