@@ -19,7 +19,7 @@ linear-gradient(to right,
 st.title('Seja bem vindo á VendaGest')
 
 nome_usuario = st.text_input('Digite seu nome: ')
-senha_s = st.text_input('Digite sua senha: ', type=True)
+senha_s = st.text_input('Digite sua senha: ', type='password')
 
 if senha_s in ['pedro.code00', 'pedrox13'] and nome_usuario == 'pedro':
     st.session_state['logado'] = True
