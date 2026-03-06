@@ -19,10 +19,10 @@ linear-gradient(to right,
 st.title('Seja bem vindo á VendaGest')
 
 nome_usuario = st.text_input('Digite seu nome: ')
-senha_s = st.text_input('Digite sua senha: ')
+senha_s = st.text_input('Digite sua senha: ', type=True)
 
-if senha_s in ['pedro.code00', 'pedrox13']:
-    st.button('Entrar')
+if senha_s in ['pedro.code00', 'pedrox13'] and nome_usuario == 'pedro':
+    st.session_state['logado'] = True
     st.switch_page('pages/principal.py')
 else:
     st.error('Tente novamente, senha ou nome incorreto')
