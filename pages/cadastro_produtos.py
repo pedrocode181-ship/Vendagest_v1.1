@@ -32,6 +32,8 @@ valor_produto = st.number_input('Digite o valor da compra do produto: ')
 venda_produto = st.number_input('Digite o valor da venda do produto: ')
 quantidade = st.text_input('Digite a quantidade do produto')
 
+lucro_produto = venda_produto - valor_produto
+
 # Banco de dados dos produtos
 engine = create_engine('sqlite:///produtos.db')
 session = sessionmaker(bind=engine)
@@ -46,18 +48,20 @@ class Produtos(base):
     valor = Column('valor da compra ', Integer)
     venda = Column('valor venda', Integer)
     estoque = Column('quantidade', String)
+    lucro = Column('Lucro do produto', String)
 
-    def __init__(self, produto, valor, venda, estoque):
+    def __init__(self, produto, valor, venda, estoque, lucro):
         self.produto = produto
         self.valor = valor
         self.venda = venda
         self.estoque = estoque 
+        self.lucro = lucro
 
 base.metadata.create_all(bind=engine)       
 
 # cadastrar os produtos
 if st.button('Cadastrar o produto'):
-    produto_cadastrado = Produtos(produto=nome_produto, valor=valor_produto, venda=venda_produto, estoque=quantidade)
+    produto_cadastrado = Produtos(produto=nome_produto, valor=valor_produto, venda=venda_produto, estoque=quantidade, lucro=lucro_produto)
     session.add(produto_cadastrado)
     session.commit()
 
@@ -72,7 +76,8 @@ for produto in produtos:
         "Nome": produto.produto,
         "Valor Compra": produto.valor,
         "Valor Venda": produto.venda,
-        'Quantidade do produto': produto.estoque
+        'Quantidade do produto': produto.estoque,
+        'Lucro encima do produto': produto.lucro
     })
 
 df = pd.DataFrame(dados)
